@@ -40,7 +40,7 @@ d01dbe652904d19c11dab62387906d53
 - Clone your application's code repository onto the EC2 instance:
     
     ```bash
-    git clone https
+    git clone https://github.com/manojv022/Netflix.git
     ```
     
 
@@ -66,6 +66,11 @@ d01dbe652904d19c11dab62387906d53
 - Create a new API key by clicking "Create" and accepting the terms and conditions.
 - Provide the required basic details and click "Submit."
 - You will receive your TMDB API key.
+
+
+![WhatsApp Image 2024-08-13 at 14 35 41_62d5aced](https://github.com/user-attachments/assets/63b006ae-9eb3-4ea2-a579-ce3172ad0678)
+
+
 
 Build and run your application using with your api key:
 ```
@@ -160,6 +165,9 @@ Goto Manage Jenkins → Tools → Install JDK(17) and NodeJs(16)→ Click on App
 ### SonarQube
 
 Create the token
+![WhatsApp Image 2024-08-13 at 14 57 37_b1d98e48](https://github.com/user-attachments/assets/f8bd279e-4d5b-49b5-a197-4aa18b399d4d)
+
+
 
 Goto Jenkins Dashboard → Manage Jenkins → Credentials → Add Secret Text. It should look like this
 
