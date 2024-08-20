@@ -529,42 +529,46 @@ sudo systemctl restart jenkins
    **Prometheus Configuration:**
 
    To configure Prometheus to scrape metrics from Node Exporter and Jenkins, you need to modify the `prometheus.yml` file. Here is an example `prometheus.yml` configuration for your setup:
+```yml
+# my global config
+global:
+  scrape_interval: 15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
+  evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
+  # scrape_timeout is set to the global default (10s).
 
-   ```yaml
-   global:
-     scrape_interval: 15s
+# Alertmanager configuration
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+          # - alertmanager:9093
 
-   scrape_configs:
-     - job_name: 'node_exporter'
-       static_configs:
-         - targets: ['localhost:9100']
+# Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
+rule_files:
+  # - "first_rules.yml"
+  # - "second_rules.yml"
 
-     - job_name: 'jenkins'
-       metrics_path: '/prometheus'
-       static_configs:
-         - targets: ['<your-jenkins-ip>:<your-jenkins-port>']
-   ```
+# A scrape configuration containing multiple endpoints to scrape:
+scrape_configs:
+  # The job name is added as a label job=<job_name> to any timeseries scraped from this config.
+  - job_name: "prometheus"
+    # metrics_path defaults to '/metrics'
+    # scheme defaults to 'http'.
+    static_configs:
+      - targets: ["localhost:9090"]
 
-   Make sure to replace `<your-jenkins-ip>` and `<your-jenkins-port>` with the appropriate values for your Jenkins setup.
+  - job_name: "node_exporter"
+    static_configs:
+      - targets: ["localhost:9100"]
 
-   Check the validity of the configuration file:
+  - job_name: "jenkins"
+    metrics_path: "/prometheus"
+    static_configs:
+      - targets: ["3.83.236.123:8080"]
+```
+![image](https://github.com/user-attachments/assets/2a4d599c-1cea-4292-b634-8ebc9148279c)
 
-   ```bash
-   promtool check config /etc/prometheus/prometheus.yml
-   ```
-
-   Reload the Prometheus configuration without restarting:
-
-   ```bash
-   curl -X POST http://localhost:9090/-/reload
-   ```
-
-   You can access Prometheus targets at:
-
-   `http://<your-prometheus-ip>:9090/targets`
-
-
-####Grafana
+#### Grafana
 
 **Install Grafana on Ubuntu 22.04 and Set it up to Work with Prometheus**
 
