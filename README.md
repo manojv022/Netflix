@@ -456,6 +456,9 @@ sudo systemctl restart jenkins
 
    `http://<your-server-ip>:9090`
 
+![image](https://github.com/user-attachments/assets/c890408b-5a67-49a1-bf1d-35eaa7041f3c)
+
+
    **Installing Node Exporter:**
 
    Create a system user for Node Exporter and download Node Exporter:
@@ -681,6 +684,10 @@ That's it! You've successfully installed and set up Grafana to work with Prometh
 
 1. **Implement Notification Services:**
     - Set up email notifications in Jenkins or other notification mechanisms.
+
+![image](https://github.com/user-attachments/assets/dcd8c1e1-532b-4e2e-8857-af1abc0b19a7)
+
+
 
 # Phase 6: Kubernetes
 
